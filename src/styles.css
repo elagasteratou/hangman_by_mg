@@ -1,0 +1,35 @@
+body {
+  background: #071013;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: #dfe0e2;
+  height: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
+#my-word li {
+  margin: 0;
+  display: inline;
+  padding: 0 10px;
+  font-size: 1.6em;
+}
+#answerWord li {
+  display: inline-block;
+  text-align: center;
+  width: 16px;
+  color: white;
+  list-style-type: none;
+}
+button {
+  background: #eb5160;
+  border-color: #eb5160;
+  margin: 2px;
+  color: black;
+  border-radius: 4px;
+}
+button:disabled,
+button[disabled] {
+  background: black;
+  color: grey;
+}

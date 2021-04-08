@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hangman</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h1>Hangman</h1>
+      <h2>Lets play</h2>
+      <p>
+        Use the alphabet below to guess the word, or click hint to get a clue.
+      </p>
+      <p id="mylives"></p>
+    </div>
+    <div class="wrapper">
+      <div id="gameButtons"></div>
+
+      <div>
+        <ul id="answerWord"></ul>
+      </div>
+
+      <div id="theClue"></div>
+      <p id="gameStatus"></p>
+      <canvas id="stickman"
+        >This Text will show if the Browser does NOT support HTML5 Canvas
+        tag</canvas
+      >
+      <div class="container">
+        <button id="hint" hidden>Hint</button>
+        <button id="reset">New Game</button>
+      </div>
+    </div>
+
+    <script src="src/index.js"></script>
+    
+  </body>
+</html>
