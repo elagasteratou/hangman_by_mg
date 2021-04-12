@@ -31,6 +31,8 @@ const generateRandomIndex = () => {
 
 const newGame = () => {
   generateRandomIndex();
+  document.getElementById('instructions').innerText =  'Use the alphabet below to guess the word, or click hint to get a clue.';
+  document.getElementById('reset').innerText = 'New Game'
   selectedWord = words[randomIndex];
   document.getElementById("theClue").innerHTML = ""; //clear hints
   answerWord.innerHTML = "";
@@ -47,7 +49,9 @@ const newGame = () => {
 
   }
   let lettersButton = alphabetButton.childNodes
-  lettersButton.forEach(element => element.disabled = false)
+  lettersButton.forEach(element => {
+    element.disabled = false;
+    element.hidden = false;})
   document.getElementById("gameStatus").innerHTML = "";
 };
 
@@ -68,9 +72,28 @@ const  disableAllLetterButtons = () => {
 
 
 const play = (event) => {
-  event.target.disabled = true; //disable letters already clicked
+  
+  let letter = event.target.innerHTML;
   let isFinished = true; // finsihed game by default is true more in if statement below.
-  const letter = event.target.innerHTML;
+  
+ 
+  console.log (event.currentTarget.nodeName)
+  if (event.currentTarget.nodeName != "BUTTON"){
+     letter = event.key;
+     
+
+     for (var i = 0; i < alphabetButton.childNodes.length; i++) {
+        if (alphabetButton.childNodes[i].textContent == letter){
+          alphabetButton.childNodes[i].disabled = true;
+        }
+  }
+
+  } else {
+    event.target.disabled = true; //disable letters already clicked
+   
+  }
+  
+  
 
   if (selectedWord.includes(letter)) {
 
@@ -102,6 +125,11 @@ const play = (event) => {
  if(isFinished){
   disableAllLetterButtons()
   if (lives === 0) {
+    for (var i = 0; i < answerWord.childNodes.length; i++) {
+      if (answerWord.childNodes[i].innerHTML === '_') {
+        answerWord.childNodes[i].innerHTML = selectedWord[i];
+      } 
+    }
     document.getElementById("gameStatus").innerHTML = "Game Over";
   } else{
     document.getElementById("gameStatus").innerHTML = "You win";
@@ -113,10 +141,12 @@ const play = (event) => {
 guesses.forEach((guesses) => {
   //creating buttons for each letter in alphabet
   let lettersButton = document.createElement("button");
+  lettersButton.hidden = true;
   lettersButton.setAttribute("id", "indvLetter");
   lettersButton.textContent = guesses;
   lettersButton.addEventListener("click", play);
   alphabetButton.appendChild(lettersButton);
 });
+document.addEventListener('keydown', play)
 
 disableAllLetterButtons();
